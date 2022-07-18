@@ -3,15 +3,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../models/user_model.dart';
+
 class AboutScreen extends StatelessWidget {
   static const routeName = 'about_screen';
 
-  const AboutScreen({Key? key, this.department}) : super(key: key);
-
-  final String? department;
+  const AboutScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    UserModel userModel =
+        ModalRoute.of(context)!.settings.arguments as UserModel;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('About '),
@@ -23,9 +26,9 @@ class AboutScreen extends StatelessWidget {
           ///Universities/University of Chittagong/Departments/Department of Psychology
           stream: FirebaseFirestore.instance
               .collection('Universities')
-              .doc('University of Chittagong')
+              .doc(userModel.university)
               .collection('Departments')
-              .doc('Department of Psychology')
+              .doc(userModel.department)
               .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
@@ -36,6 +39,7 @@ class AboutScreen extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
 
+            //
             var data = snapshot.data;
 
             return SingleChildScrollView(

@@ -86,50 +86,49 @@ class SingleBatchScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       //total
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 8),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            //
-                            Text(
-                              'Total Student: ',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge!
-                                  .copyWith(fontWeight: FontWeight.bold),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          //
+                          Text(
+                            'Total Student: ',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(fontWeight: FontWeight.bold),
+                          ),
+
+                          //
+                          Container(
+                            padding: const EdgeInsets.all(6),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                  color: Theme.of(context).dividerColor),
                             ),
-                            //
-                            Container(
-                              padding: const EdgeInsets.all(6),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                    color: Theme.of(context).dividerColor),
-                              ),
-                              child: Text(
-                                studentCounter,
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  // fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                            child: Text(
+                              studentCounter,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                // fontSize: 16,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
+
+                      const SizedBox(height: 8),
 
                       // student list
                       ListView.separated(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        padding: const EdgeInsets.only(
-                          left: 16,
-                          right: 16,
-                          bottom: 16,
-                        ),
+                        // padding: const EdgeInsets.only(
+                        //   left: 16,
+                        //   right: 16,
+                        //   bottom: 16,
+                        // ),
                         itemCount: data.length,
                         separatorBuilder: (BuildContext context, int index) =>
                             const SizedBox(height: 12),

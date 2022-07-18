@@ -6,9 +6,14 @@ import '../../../models/user_model.dart';
 import '../../../utils/constants.dart';
 
 class AddCr extends StatefulWidget {
-  const AddCr({Key? key, required this.userModel}) : super(key: key);
+  const AddCr({
+    Key? key,
+    required this.userModel,
+    required this.batchList,
+  }) : super(key: key);
 
   final UserModel userModel;
+  final List<String> batchList;
 
   @override
   State<AddCr> createState() => _AddCrState();
@@ -141,7 +146,7 @@ class _AddCrState extends State<AddCr> {
                   });
                 },
                 validator: (value) => value == null ? "Select batch" : null,
-                items: kBatchList.reversed.map((String val) {
+                items: widget.batchList.reversed.map((String val) {
                   return DropdownMenuItem(
                     value: val,
                     child: Text(val),

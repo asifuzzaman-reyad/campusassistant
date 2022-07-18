@@ -11,11 +11,13 @@ class EditCr extends StatefulWidget {
     required this.userModel,
     required this.crModel,
     required this.docId,
+    required this.batchList,
   }) : super(key: key);
 
   final UserModel userModel;
   final CrModel crModel;
   final String docId;
+  final List<String> batchList;
 
   @override
   State<EditCr> createState() => _EditCrState();
@@ -165,7 +167,7 @@ class _EditCrState extends State<EditCr> {
                   });
                 },
                 validator: (value) => value == null ? "Select batch" : null,
-                items: kBatchList.reversed.map((String val) {
+                items: widget.batchList.reversed.map((String val) {
                   return DropdownMenuItem(
                     value: val,
                     child: Text(val),

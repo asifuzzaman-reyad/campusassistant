@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:campusassistant/screens/home/office/widgets/add_staff.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '/models/stuff_model.dart';
 import '/models/user_model.dart';
@@ -28,16 +30,10 @@ class StuffList extends StatelessWidget {
           ? FloatingActionButton(
               onPressed: () async {
                 //
-                StaffModel staffModel = StaffModel(
-                  name: 'name',
-                  post: 'post',
-                  phone: '017',
-                  serial: 1,
-                  imageUrl: '',
-                );
-
-                // todo: late add
-                // ref.collection('Staff').doc().set(staffModel.toJson());
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AddStaff(userModel: userModel)));
               },
               child: const Icon(Icons.add),
             )
@@ -72,8 +68,8 @@ class StuffList extends StatelessWidget {
               return GestureDetector(
                 onLongPress: () async {
                   //
-                  // await ref.doc(data[index].id).delete().then((value) =>
-                  //     Fluttertoast.showToast(msg: 'Delete successful'));
+                  await data[index].reference.delete().then((value) =>
+                      Fluttertoast.showToast(msg: 'Delete successful'));
                 },
                 child: Card(
                   margin: EdgeInsets.zero,
